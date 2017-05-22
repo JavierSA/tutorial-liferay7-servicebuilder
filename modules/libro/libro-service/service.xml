@@ -20,19 +20,49 @@
 
         <!-- Other fields -->
         <column name="titulo" type="String"/>
-        <column name="escritor" type="String"/>
         <column name="publicacion" type="Date"/>
         <column name="genero" type="String"/>
+        <column name="escritorId" type="long"/>
 
         <!-- Order -->
         <order by="asc">
             <order-column name="titulo"/>
-            <order-column name="escritor"/>
         </order>
 
         <!-- Finder methods -->
         <finder name="Titulo" return-type="Collection">
             <finder-column name="titulo"/>
+        </finder>
+        <finder name="EscritorId" return-type="Collection">
+            <finder-column name="escritorId"/>
+        </finder>
+    </entity>
+
+    <entity name="Escritor" uuid="true" local-service="true" remote-service="false">
+        <!-- PK fields -->
+        <column name="escritorId" primary="true" type="long"/>
+
+        <!-- Group instance -->
+        <column name="groupId" type="long"/>
+
+        <!-- Audit fields -->
+        <column name="companyId" type="long"/>
+        <column name="userId" type="long"/>
+        <column name="userName" type="String"/>
+        <column name="createDate" type="Date"/>
+        <column name="modifiedDate" type="Date"/>
+
+        <!-- Other fields -->
+        <column name="nombre" type="String"/>
+
+        <!-- Order -->
+        <order by="asc">
+            <order-column name="nombre"/>
+        </order>
+
+        <!-- Finder methods -->
+        <finder name="Nombre" return-type="Collection">
+            <finder-column name="nombre"/>
         </finder>
     </entity>
 </service-builder>
