@@ -10,7 +10,9 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
-		<field name="titulo" type="String" />
+		<field name="titulo" type="String">
+			<hint name="max-length">200</hint>
+		</field>
 		<field name="escritor" type="String" />
 		<field name="publicacion" type="Date" />
 	</model>
