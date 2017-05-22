@@ -7,7 +7,7 @@ create table LIBRO_Libro (
 	userName VARCHAR(75) null,
 	createDate DATE null,
 	modifiedDate DATE null,
-	titulo VARCHAR(75) null,
+	titulo VARCHAR(200) null,
 	escritor VARCHAR(75) null,
 	publicacion DATE null
 );

@@ -95,7 +95,7 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		TABLE_COLUMNS_MAP.put("publicacion", Types.TIMESTAMP);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LIBRO_Libro (uuid_ VARCHAR(75) null,libroId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,titulo VARCHAR(75) null,escritor VARCHAR(75) null,publicacion DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table LIBRO_Libro (uuid_ VARCHAR(75) null,libroId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,titulo VARCHAR(200) null,escritor VARCHAR(75) null,publicacion DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table LIBRO_Libro";
 	public static final String ORDER_BY_JPQL = " ORDER BY libro.titulo ASC, libro.escritor ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LIBRO_Libro.titulo ASC, LIBRO_Libro.escritor ASC";
