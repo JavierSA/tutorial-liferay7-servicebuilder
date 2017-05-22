@@ -21,6 +21,12 @@ create table LIBRO_Libro (
 	modifiedDate DATE null,
 	titulo VARCHAR(200) null,
 	publicacion DATE null,
-	genero VARCHAR(60) null,
-	escritorId LONG
+	genero VARCHAR(60) null
+);
+
+create table LIBRO_Libros_Escritores (
+	companyId LONG not null,
+	escritorId LONG not null,
+	libroId LONG not null,
+	primary key (escritorId, libroId)
 );

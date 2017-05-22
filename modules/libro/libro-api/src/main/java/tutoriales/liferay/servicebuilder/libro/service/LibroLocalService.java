@@ -64,6 +64,12 @@ public interface LibroLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link LibroLocalServiceUtil} to access the libro local service. Add custom service methods to {@link tutoriales.liferay.servicebuilder.libro.service.impl.LibroLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasEscritorLibro(long escritorId, long libroId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasEscritorLibros(long escritorId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	public DynamicQuery dynamicQuery();
@@ -86,6 +92,9 @@ public interface LibroLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getEscritorLibrosCount(long escritorId);
 
 	/**
 	* Returns the number of libros.
@@ -140,6 +149,16 @@ public interface LibroLocalService extends BaseLocalService,
 	*/
 	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
 		int end, OrderByComparator<T> orderByComparator);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Libro> getEscritorLibros(long escritorId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Libro> getEscritorLibros(long escritorId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Libro> getEscritorLibros(long escritorId, int start, int end,
+		OrderByComparator<Libro> orderByComparator);
 
 	/**
 	* Returns a range of all the libros.
@@ -198,6 +217,15 @@ public interface LibroLocalService extends BaseLocalService,
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
+
+	/**
+	* Returns the escritorIds of the escritors associated with the libro.
+	*
+	* @param libroId the libroId of the libro
+	* @return long[] the escritorIds of escritors associated with the libro
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long[] getEscritorPrimaryKeys(long libroId);
 
 	/**
 	* Adds the libro to the database. Also notifies the appropriate model listeners.
@@ -278,4 +306,24 @@ public interface LibroLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public Libro updateLibro(Libro libro);
+
+	public void addEscritorLibro(long escritorId, long libroId);
+
+	public void addEscritorLibro(long escritorId, Libro libro);
+
+	public void addEscritorLibros(long escritorId, List<Libro> libros);
+
+	public void addEscritorLibros(long escritorId, long[] libroIds);
+
+	public void clearEscritorLibros(long escritorId);
+
+	public void deleteEscritorLibro(long escritorId, long libroId);
+
+	public void deleteEscritorLibro(long escritorId, Libro libro);
+
+	public void deleteEscritorLibros(long escritorId, List<Libro> libros);
+
+	public void deleteEscritorLibros(long escritorId, long[] libroIds);
+
+	public void setEscritorLibros(long escritorId, long[] libroIds);
 }

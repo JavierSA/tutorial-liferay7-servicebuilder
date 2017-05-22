@@ -70,7 +70,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 		attributes.put("titulo", getTitulo());
 		attributes.put("publicacion", getPublicacion());
 		attributes.put("genero", getGenero());
-		attributes.put("escritorId", getEscritorId());
 
 		return attributes;
 	}
@@ -141,12 +140,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 
 		if (genero != null) {
 			setGenero(genero);
-		}
-
-		Long escritorId = (Long)attributes.get("escritorId");
-
-		if (escritorId != null) {
-			setEscritorId(escritorId);
 		}
 	}
 
@@ -297,16 +290,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	}
 
 	/**
-	* Returns the escritor ID of this libro.
-	*
-	* @return the escritor ID of this libro
-	*/
-	@Override
-	public long getEscritorId() {
-		return _libro.getEscritorId();
-	}
-
-	/**
 	* Returns the group ID of this libro.
 	*
 	* @return the group ID of this libro
@@ -384,16 +367,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	@Override
 	public void setCreateDate(Date createDate) {
 		_libro.setCreateDate(createDate);
-	}
-
-	/**
-	* Sets the escritor ID of this libro.
-	*
-	* @param escritorId the escritor ID of this libro
-	*/
-	@Override
-	public void setEscritorId(long escritorId) {
-		_libro.setEscritorId(escritorId);
 	}
 
 	@Override

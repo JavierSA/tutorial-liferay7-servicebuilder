@@ -254,20 +254,6 @@ public interface LibroModel extends BaseModel<Libro>, GroupedModel, ShardedModel
 	 */
 	public void setGenero(String genero);
 
-	/**
-	 * Returns the escritor ID of this libro.
-	 *
-	 * @return the escritor ID of this libro
-	 */
-	public long getEscritorId();
-
-	/**
-	 * Sets the escritor ID of this libro.
-	 *
-	 * @param escritorId the escritor ID of this libro
-	 */
-	public void setEscritorId(long escritorId);
-
 	@Override
 	public boolean isNew();
 

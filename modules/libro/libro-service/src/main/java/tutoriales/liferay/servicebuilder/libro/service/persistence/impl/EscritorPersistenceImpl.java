@@ -16,6 +16,7 @@ package tutoriales.liferay.servicebuilder.libro.service.persistence.impl;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.orm.EntityCache;
 import com.liferay.portal.kernel.dao.orm.FinderCache;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
@@ -30,6 +31,10 @@ import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.service.persistence.CompanyProvider;
 import com.liferay.portal.kernel.service.persistence.CompanyProviderWrapper;
 import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.kernel.service.persistence.impl.TableMapper;
+import com.liferay.portal.kernel.service.persistence.impl.TableMapperFactory;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -43,6 +48,7 @@ import tutoriales.liferay.servicebuilder.libro.model.Escritor;
 import tutoriales.liferay.servicebuilder.libro.model.impl.EscritorImpl;
 import tutoriales.liferay.servicebuilder.libro.model.impl.EscritorModelImpl;
 import tutoriales.liferay.servicebuilder.libro.service.persistence.EscritorPersistence;
+import tutoriales.liferay.servicebuilder.libro.service.persistence.LibroPersistence;
 
 import java.io.Serializable;
 
@@ -2214,6 +2220,8 @@ public class EscritorPersistenceImpl extends BasePersistenceImpl<Escritor>
 	protected Escritor removeImpl(Escritor escritor) {
 		escritor = toUnwrappedModel(escritor);
 
+		escritorToLibroTableMapper.deleteLeftPrimaryKeyTableMappings(escritor.getPrimaryKey());
+
 		Session session = null;
 
 		try {
@@ -2773,6 +2781,307 @@ public class EscritorPersistenceImpl extends BasePersistenceImpl<Escritor>
 		return count.intValue();
 	}
 
+	/**
+	 * Returns the primaryKeys of libros associated with the escritor.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @return long[] of the primaryKeys of libros associated with the escritor
+	 */
+	@Override
+	public long[] getLibroPrimaryKeys(long pk) {
+		long[] pks = escritorToLibroTableMapper.getRightPrimaryKeys(pk);
+
+		return pks.clone();
+	}
+
+	/**
+	 * Returns all the libros associated with the escritor.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @return the libros associated with the escritor
+	 */
+	@Override
+	public List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk) {
+		return getLibros(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+	}
+
+	/**
+	 * Returns a range of all the libros associated with the escritor.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EscritorModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param start the lower bound of the range of escritors
+	 * @param end the upper bound of the range of escritors (not inclusive)
+	 * @return the range of libros associated with the escritor
+	 */
+	@Override
+	public List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk, int start, int end) {
+		return getLibros(pk, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the libros associated with the escritor.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EscritorModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param start the lower bound of the range of escritors
+	 * @param end the upper bound of the range of escritors (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of libros associated with the escritor
+	 */
+	@Override
+	public List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk, int start, int end,
+		OrderByComparator<tutoriales.liferay.servicebuilder.libro.model.Libro> orderByComparator) {
+		return escritorToLibroTableMapper.getRightBaseModels(pk, start, end,
+			orderByComparator);
+	}
+
+	/**
+	 * Returns the number of libros associated with the escritor.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @return the number of libros associated with the escritor
+	 */
+	@Override
+	public int getLibrosSize(long pk) {
+		long[] pks = escritorToLibroTableMapper.getRightPrimaryKeys(pk);
+
+		return pks.length;
+	}
+
+	/**
+	 * Returns <code>true</code> if the libro is associated with the escritor.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPK the primary key of the libro
+	 * @return <code>true</code> if the libro is associated with the escritor; <code>false</code> otherwise
+	 */
+	@Override
+	public boolean containsLibro(long pk, long libroPK) {
+		return escritorToLibroTableMapper.containsTableMapping(pk, libroPK);
+	}
+
+	/**
+	 * Returns <code>true</code> if the escritor has any libros associated with it.
+	 *
+	 * @param pk the primary key of the escritor to check for associations with libros
+	 * @return <code>true</code> if the escritor has any libros associated with it; <code>false</code> otherwise
+	 */
+	@Override
+	public boolean containsLibros(long pk) {
+		if (getLibrosSize(pk) > 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	/**
+	 * Adds an association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPK the primary key of the libro
+	 */
+	@Override
+	public void addLibro(long pk, long libroPK) {
+		Escritor escritor = fetchByPrimaryKey(pk);
+
+		if (escritor == null) {
+			escritorToLibroTableMapper.addTableMapping(companyProvider.getCompanyId(),
+				pk, libroPK);
+		}
+		else {
+			escritorToLibroTableMapper.addTableMapping(escritor.getCompanyId(),
+				pk, libroPK);
+		}
+	}
+
+	/**
+	 * Adds an association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libro the libro
+	 */
+	@Override
+	public void addLibro(long pk,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro) {
+		Escritor escritor = fetchByPrimaryKey(pk);
+
+		if (escritor == null) {
+			escritorToLibroTableMapper.addTableMapping(companyProvider.getCompanyId(),
+				pk, libro.getPrimaryKey());
+		}
+		else {
+			escritorToLibroTableMapper.addTableMapping(escritor.getCompanyId(),
+				pk, libro.getPrimaryKey());
+		}
+	}
+
+	/**
+	 * Adds an association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPKs the primary keys of the libros
+	 */
+	@Override
+	public void addLibros(long pk, long[] libroPKs) {
+		long companyId = 0;
+
+		Escritor escritor = fetchByPrimaryKey(pk);
+
+		if (escritor == null) {
+			companyId = companyProvider.getCompanyId();
+		}
+		else {
+			companyId = escritor.getCompanyId();
+		}
+
+		escritorToLibroTableMapper.addTableMappings(companyId, pk, libroPKs);
+	}
+
+	/**
+	 * Adds an association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libros the libros
+	 */
+	@Override
+	public void addLibros(long pk,
+		List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros) {
+		addLibros(pk,
+			ListUtil.toLongArray(libros,
+				tutoriales.liferay.servicebuilder.libro.model.Libro.LIBRO_ID_ACCESSOR));
+	}
+
+	/**
+	 * Clears all associations between the escritor and its libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor to clear the associated libros from
+	 */
+	@Override
+	public void clearLibros(long pk) {
+		escritorToLibroTableMapper.deleteLeftPrimaryKeyTableMappings(pk);
+	}
+
+	/**
+	 * Removes the association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPK the primary key of the libro
+	 */
+	@Override
+	public void removeLibro(long pk, long libroPK) {
+		escritorToLibroTableMapper.deleteTableMapping(pk, libroPK);
+	}
+
+	/**
+	 * Removes the association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libro the libro
+	 */
+	@Override
+	public void removeLibro(long pk,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro) {
+		escritorToLibroTableMapper.deleteTableMapping(pk, libro.getPrimaryKey());
+	}
+
+	/**
+	 * Removes the association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPKs the primary keys of the libros
+	 */
+	@Override
+	public void removeLibros(long pk, long[] libroPKs) {
+		escritorToLibroTableMapper.deleteTableMappings(pk, libroPKs);
+	}
+
+	/**
+	 * Removes the association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libros the libros
+	 */
+	@Override
+	public void removeLibros(long pk,
+		List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros) {
+		removeLibros(pk,
+			ListUtil.toLongArray(libros,
+				tutoriales.liferay.servicebuilder.libro.model.Libro.LIBRO_ID_ACCESSOR));
+	}
+
+	/**
+	 * Sets the libros associated with the escritor, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libroPKs the primary keys of the libros to be associated with the escritor
+	 */
+	@Override
+	public void setLibros(long pk, long[] libroPKs) {
+		Set<Long> newLibroPKsSet = SetUtil.fromArray(libroPKs);
+		Set<Long> oldLibroPKsSet = SetUtil.fromArray(escritorToLibroTableMapper.getRightPrimaryKeys(
+					pk));
+
+		Set<Long> removeLibroPKsSet = new HashSet<Long>(oldLibroPKsSet);
+
+		removeLibroPKsSet.removeAll(newLibroPKsSet);
+
+		escritorToLibroTableMapper.deleteTableMappings(pk,
+			ArrayUtil.toLongArray(removeLibroPKsSet));
+
+		newLibroPKsSet.removeAll(oldLibroPKsSet);
+
+		long companyId = 0;
+
+		Escritor escritor = fetchByPrimaryKey(pk);
+
+		if (escritor == null) {
+			companyId = companyProvider.getCompanyId();
+		}
+		else {
+			companyId = escritor.getCompanyId();
+		}
+
+		escritorToLibroTableMapper.addTableMappings(companyId, pk,
+			ArrayUtil.toLongArray(newLibroPKsSet));
+	}
+
+	/**
+	 * Sets the libros associated with the escritor, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	 *
+	 * @param pk the primary key of the escritor
+	 * @param libros the libros to be associated with the escritor
+	 */
+	@Override
+	public void setLibros(long pk,
+		List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros) {
+		try {
+			long[] libroPKs = new long[libros.size()];
+
+			for (int i = 0; i < libros.size(); i++) {
+				tutoriales.liferay.servicebuilder.libro.model.Libro libro = libros.get(i);
+
+				libroPKs[i] = libro.getPrimaryKey();
+			}
+
+			setLibros(pk, libroPKs);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+	}
+
 	@Override
 	public Set<String> getBadColumnNames() {
 		return _badColumnNames;
@@ -2787,6 +3096,8 @@ public class EscritorPersistenceImpl extends BasePersistenceImpl<Escritor>
 	 * Initializes the escritor persistence.
 	 */
 	public void afterPropertiesSet() {
+		escritorToLibroTableMapper = TableMapperFactory.getTableMapper("LIBRO_Libros_Escritores",
+				"companyId", "escritorId", "libroId", this, libroPersistence);
 	}
 
 	public void destroy() {
@@ -2794,6 +3105,8 @@ public class EscritorPersistenceImpl extends BasePersistenceImpl<Escritor>
 		finderCache.removeCache(FINDER_CLASS_NAME_ENTITY);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		finderCache.removeCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		TableMapperFactory.removeTableMapper("LIBRO_Libros_Escritores");
 	}
 
 	@ServiceReference(type = CompanyProviderWrapper.class)
@@ -2802,6 +3115,9 @@ public class EscritorPersistenceImpl extends BasePersistenceImpl<Escritor>
 	protected EntityCache entityCache;
 	@ServiceReference(type = FinderCache.class)
 	protected FinderCache finderCache;
+	@BeanReference(type = LibroPersistence.class)
+	protected LibroPersistence libroPersistence;
+	protected TableMapper<Escritor, tutoriales.liferay.servicebuilder.libro.model.Libro> escritorToLibroTableMapper;
 	private static final String _SQL_SELECT_ESCRITOR = "SELECT escritor FROM Escritor escritor";
 	private static final String _SQL_SELECT_ESCRITOR_WHERE_PKS_IN = "SELECT escritor FROM Escritor escritor WHERE escritorId IN (";
 	private static final String _SQL_SELECT_ESCRITOR_WHERE = "SELECT escritor FROM Escritor escritor WHERE ";

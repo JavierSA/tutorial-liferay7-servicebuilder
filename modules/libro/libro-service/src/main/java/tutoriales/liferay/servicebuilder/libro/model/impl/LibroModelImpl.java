@@ -77,8 +77,7 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "titulo", Types.VARCHAR },
 			{ "publicacion", Types.TIMESTAMP },
-			{ "genero", Types.VARCHAR },
-			{ "escritorId", Types.BIGINT }
+			{ "genero", Types.VARCHAR }
 		};
 	public static final Map<String, Integer> TABLE_COLUMNS_MAP = new HashMap<String, Integer>();
 
@@ -94,10 +93,9 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		TABLE_COLUMNS_MAP.put("titulo", Types.VARCHAR);
 		TABLE_COLUMNS_MAP.put("publicacion", Types.TIMESTAMP);
 		TABLE_COLUMNS_MAP.put("genero", Types.VARCHAR);
-		TABLE_COLUMNS_MAP.put("escritorId", Types.BIGINT);
 	}
 
-	public static final String TABLE_SQL_CREATE = "create table LIBRO_Libro (uuid_ VARCHAR(75) null,libroId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,titulo VARCHAR(200) null,publicacion DATE null,genero VARCHAR(60) null,escritorId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table LIBRO_Libro (uuid_ VARCHAR(75) null,libroId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,titulo VARCHAR(200) null,publicacion DATE null,genero VARCHAR(60) null)";
 	public static final String TABLE_SQL_DROP = "drop table LIBRO_Libro";
 	public static final String ORDER_BY_JPQL = " ORDER BY libro.titulo ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY LIBRO_Libro.titulo ASC";
@@ -114,10 +112,20 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 				"value.object.column.bitmask.enabled.tutoriales.liferay.servicebuilder.libro.model.Libro"),
 			true);
 	public static final long COMPANYID_COLUMN_BITMASK = 1L;
-	public static final long ESCRITORID_COLUMN_BITMASK = 2L;
-	public static final long GROUPID_COLUMN_BITMASK = 4L;
-	public static final long TITULO_COLUMN_BITMASK = 8L;
-	public static final long UUID_COLUMN_BITMASK = 16L;
+	public static final long GROUPID_COLUMN_BITMASK = 2L;
+	public static final long TITULO_COLUMN_BITMASK = 4L;
+	public static final long UUID_COLUMN_BITMASK = 8L;
+	public static final String MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_NAME = "LIBRO_Libros_Escritores";
+	public static final Object[][] MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_COLUMNS =
+		{
+			{ "companyId", Types.BIGINT },
+			{ "escritorId", Types.BIGINT },
+			{ "libroId", Types.BIGINT }
+		};
+	public static final String MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_SQL_CREATE = "create table LIBRO_Libros_Escritores (companyId LONG not null,escritorId LONG not null,libroId LONG not null,primary key (escritorId, libroId))";
+	public static final boolean FINDER_CACHE_ENABLED_LIBRO_LIBROS_ESCRITORES = GetterUtil.getBoolean(tutoriales.liferay.servicebuilder.libro.service.util.ServiceProps.get(
+				"value.object.finder.cache.enabled.LIBRO_Libros_Escritores"),
+			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(tutoriales.liferay.servicebuilder.libro.service.util.ServiceProps.get(
 				"lock.expiration.time.tutoriales.liferay.servicebuilder.libro.model.Libro"));
 
@@ -169,7 +177,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		attributes.put("titulo", getTitulo());
 		attributes.put("publicacion", getPublicacion());
 		attributes.put("genero", getGenero());
-		attributes.put("escritorId", getEscritorId());
 
 		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
 		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
@@ -243,12 +250,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 
 		if (genero != null) {
 			setGenero(genero);
-		}
-
-		Long escritorId = (Long)attributes.get("escritorId");
-
-		if (escritorId != null) {
-			setEscritorId(escritorId);
 		}
 	}
 
@@ -447,28 +448,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 	}
 
 	@Override
-	public long getEscritorId() {
-		return _escritorId;
-	}
-
-	@Override
-	public void setEscritorId(long escritorId) {
-		_columnBitmask |= ESCRITORID_COLUMN_BITMASK;
-
-		if (!_setOriginalEscritorId) {
-			_setOriginalEscritorId = true;
-
-			_originalEscritorId = _escritorId;
-		}
-
-		_escritorId = escritorId;
-	}
-
-	public long getOriginalEscritorId() {
-		return _originalEscritorId;
-	}
-
-	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
 				Libro.class.getName()));
@@ -516,7 +495,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		libroImpl.setTitulo(getTitulo());
 		libroImpl.setPublicacion(getPublicacion());
 		libroImpl.setGenero(getGenero());
-		libroImpl.setEscritorId(getEscritorId());
 
 		libroImpl.resetOriginalValues();
 
@@ -590,10 +568,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		libroModelImpl._setModifiedDate = false;
 
 		libroModelImpl._originalTitulo = libroModelImpl._titulo;
-
-		libroModelImpl._originalEscritorId = libroModelImpl._escritorId;
-
-		libroModelImpl._setOriginalEscritorId = false;
 
 		libroModelImpl._columnBitmask = 0;
 	}
@@ -669,14 +643,12 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 			libroCacheModel.genero = null;
 		}
 
-		libroCacheModel.escritorId = getEscritorId();
-
 		return libroCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(23);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -700,8 +672,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 		sb.append(getPublicacion());
 		sb.append(", genero=");
 		sb.append(getGenero());
-		sb.append(", escritorId=");
-		sb.append(getEscritorId());
 		sb.append("}");
 
 		return sb.toString();
@@ -709,7 +679,7 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(40);
+		StringBundler sb = new StringBundler(37);
 
 		sb.append("<model><model-name>");
 		sb.append("tutoriales.liferay.servicebuilder.libro.model.Libro");
@@ -759,10 +729,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 			"<column><column-name>genero</column-name><column-value><![CDATA[");
 		sb.append(getGenero());
 		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>escritorId</column-name><column-value><![CDATA[");
-		sb.append(getEscritorId());
-		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -791,9 +757,6 @@ public class LibroModelImpl extends BaseModelImpl<Libro> implements LibroModel {
 	private String _originalTitulo;
 	private Date _publicacion;
 	private String _genero;
-	private long _escritorId;
-	private long _originalEscritorId;
-	private boolean _setOriginalEscritorId;
 	private long _columnBitmask;
 	private Libro _escapedModel;
 }

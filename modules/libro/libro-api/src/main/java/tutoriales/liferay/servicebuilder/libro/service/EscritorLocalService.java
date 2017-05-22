@@ -64,6 +64,12 @@ public interface EscritorLocalService extends BaseLocalService,
 	 * Never modify or reference this interface directly. Always use {@link EscritorLocalServiceUtil} to access the escritor local service. Add custom service methods to {@link tutoriales.liferay.servicebuilder.libro.service.impl.EscritorLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasLibroEscritor(long libroId, long escritorId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public boolean hasLibroEscritors(long libroId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
 	public DynamicQuery dynamicQuery();
@@ -94,6 +100,9 @@ public interface EscritorLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getEscritorsCount();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getLibroEscritorsCount(long libroId);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -181,6 +190,16 @@ public interface EscritorLocalService extends BaseLocalService,
 		java.lang.String uuid, long companyId, int start, int end,
 		OrderByComparator<Escritor> orderByComparator);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Escritor> getLibroEscritors(long libroId);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Escritor> getLibroEscritors(long libroId, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Escritor> getLibroEscritors(long libroId, int start, int end,
+		OrderByComparator<Escritor> orderByComparator);
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*
@@ -198,6 +217,15 @@ public interface EscritorLocalService extends BaseLocalService,
 	*/
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
 		Projection projection);
+
+	/**
+	* Returns the libroIds of the libros associated with the escritor.
+	*
+	* @param escritorId the escritorId of the escritor
+	* @return long[] the libroIds of libros associated with the escritor
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long[] getLibroPrimaryKeys(long escritorId);
 
 	/**
 	* Adds the escritor to the database. Also notifies the appropriate model listeners.
@@ -279,4 +307,24 @@ public interface EscritorLocalService extends BaseLocalService,
 	*/
 	@Indexable(type = IndexableType.REINDEX)
 	public Escritor updateEscritor(Escritor escritor);
+
+	public void addLibroEscritor(long libroId, long escritorId);
+
+	public void addLibroEscritor(long libroId, Escritor escritor);
+
+	public void addLibroEscritors(long libroId, List<Escritor> escritors);
+
+	public void addLibroEscritors(long libroId, long[] escritorIds);
+
+	public void clearLibroEscritors(long libroId);
+
+	public void deleteLibroEscritor(long libroId, long escritorId);
+
+	public void deleteLibroEscritor(long libroId, Escritor escritor);
+
+	public void deleteLibroEscritors(long libroId, List<Escritor> escritors);
+
+	public void deleteLibroEscritors(long libroId, long[] escritorIds);
+
+	public void setLibroEscritors(long libroId, long[] escritorIds);
 }

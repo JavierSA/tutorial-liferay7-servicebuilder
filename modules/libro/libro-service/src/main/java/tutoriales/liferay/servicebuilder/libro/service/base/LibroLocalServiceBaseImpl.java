@@ -423,6 +423,131 @@ public abstract class LibroLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 */
+	@Override
+	public void addEscritorLibro(long escritorId, long libroId) {
+		escritorPersistence.addLibro(escritorId, libroId);
+	}
+
+	/**
+	 */
+	@Override
+	public void addEscritorLibro(long escritorId, Libro libro) {
+		escritorPersistence.addLibro(escritorId, libro);
+	}
+
+	/**
+	 */
+	@Override
+	public void addEscritorLibros(long escritorId, long[] libroIds) {
+		escritorPersistence.addLibros(escritorId, libroIds);
+	}
+
+	/**
+	 */
+	@Override
+	public void addEscritorLibros(long escritorId, List<Libro> libros) {
+		escritorPersistence.addLibros(escritorId, libros);
+	}
+
+	/**
+	 */
+	@Override
+	public void clearEscritorLibros(long escritorId) {
+		escritorPersistence.clearLibros(escritorId);
+	}
+
+	/**
+	 */
+	@Override
+	public void deleteEscritorLibro(long escritorId, long libroId) {
+		escritorPersistence.removeLibro(escritorId, libroId);
+	}
+
+	/**
+	 */
+	@Override
+	public void deleteEscritorLibro(long escritorId, Libro libro) {
+		escritorPersistence.removeLibro(escritorId, libro);
+	}
+
+	/**
+	 */
+	@Override
+	public void deleteEscritorLibros(long escritorId, long[] libroIds) {
+		escritorPersistence.removeLibros(escritorId, libroIds);
+	}
+
+	/**
+	 */
+	@Override
+	public void deleteEscritorLibros(long escritorId, List<Libro> libros) {
+		escritorPersistence.removeLibros(escritorId, libros);
+	}
+
+	/**
+	 * Returns the escritorIds of the escritors associated with the libro.
+	 *
+	 * @param libroId the libroId of the libro
+	 * @return long[] the escritorIds of escritors associated with the libro
+	 */
+	@Override
+	public long[] getEscritorPrimaryKeys(long libroId) {
+		return libroPersistence.getEscritorPrimaryKeys(libroId);
+	}
+
+	/**
+	 */
+	@Override
+	public List<Libro> getEscritorLibros(long escritorId) {
+		return escritorPersistence.getLibros(escritorId);
+	}
+
+	/**
+	 */
+	@Override
+	public List<Libro> getEscritorLibros(long escritorId, int start, int end) {
+		return escritorPersistence.getLibros(escritorId, start, end);
+	}
+
+	/**
+	 */
+	@Override
+	public List<Libro> getEscritorLibros(long escritorId, int start, int end,
+		OrderByComparator<Libro> orderByComparator) {
+		return escritorPersistence.getLibros(escritorId, start, end,
+			orderByComparator);
+	}
+
+	/**
+	 */
+	@Override
+	public int getEscritorLibrosCount(long escritorId) {
+		return escritorPersistence.getLibrosSize(escritorId);
+	}
+
+	/**
+	 */
+	@Override
+	public boolean hasEscritorLibro(long escritorId, long libroId) {
+		return escritorPersistence.containsLibro(escritorId, libroId);
+	}
+
+	/**
+	 */
+	@Override
+	public boolean hasEscritorLibros(long escritorId) {
+		return escritorPersistence.containsLibros(escritorId);
+	}
+
+	/**
+	 */
+	@Override
+	public void setEscritorLibros(long escritorId, long[] libroIds) {
+		escritorPersistence.setLibros(escritorId, libroIds);
+	}
+
+	/**
 	 * Returns the escritor local service.
 	 *
 	 * @return the escritor local service

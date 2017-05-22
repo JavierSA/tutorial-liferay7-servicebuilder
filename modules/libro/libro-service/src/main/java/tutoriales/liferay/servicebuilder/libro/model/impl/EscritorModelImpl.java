@@ -112,6 +112,17 @@ public class EscritorModelImpl extends BaseModelImpl<Escritor>
 	public static final long GROUPID_COLUMN_BITMASK = 2L;
 	public static final long NOMBRE_COLUMN_BITMASK = 4L;
 	public static final long UUID_COLUMN_BITMASK = 8L;
+	public static final String MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_NAME = "LIBRO_Libros_Escritores";
+	public static final Object[][] MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_COLUMNS =
+		{
+			{ "companyId", Types.BIGINT },
+			{ "escritorId", Types.BIGINT },
+			{ "libroId", Types.BIGINT }
+		};
+	public static final String MAPPING_TABLE_LIBRO_LIBROS_ESCRITORES_SQL_CREATE = "create table LIBRO_Libros_Escritores (companyId LONG not null,escritorId LONG not null,libroId LONG not null,primary key (escritorId, libroId))";
+	public static final boolean FINDER_CACHE_ENABLED_LIBRO_LIBROS_ESCRITORES = GetterUtil.getBoolean(tutoriales.liferay.servicebuilder.libro.service.util.ServiceProps.get(
+				"value.object.finder.cache.enabled.LIBRO_Libros_Escritores"),
+			true);
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(tutoriales.liferay.servicebuilder.libro.service.util.ServiceProps.get(
 				"lock.expiration.time.tutoriales.liferay.servicebuilder.libro.model.Escritor"));
 

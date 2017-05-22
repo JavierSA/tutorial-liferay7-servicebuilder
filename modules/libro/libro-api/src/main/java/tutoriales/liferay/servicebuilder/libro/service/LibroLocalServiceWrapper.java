@@ -33,6 +33,16 @@ public class LibroLocalServiceWrapper implements LibroLocalService,
 	}
 
 	@Override
+	public boolean hasEscritorLibro(long escritorId, long libroId) {
+		return _libroLocalService.hasEscritorLibro(escritorId, libroId);
+	}
+
+	@Override
+	public boolean hasEscritorLibros(long escritorId) {
+		return _libroLocalService.hasEscritorLibros(escritorId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _libroLocalService.getActionableDynamicQuery();
 	}
@@ -68,6 +78,11 @@ public class LibroLocalServiceWrapper implements LibroLocalService,
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _libroLocalService.getPersistedModel(primaryKeyObj);
+	}
+
+	@Override
+	public int getEscritorLibrosCount(long escritorId) {
+		return _libroLocalService.getEscritorLibrosCount(escritorId);
 	}
 
 	/**
@@ -143,6 +158,26 @@ public class LibroLocalServiceWrapper implements LibroLocalService,
 			orderByComparator);
 	}
 
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getEscritorLibros(
+		long escritorId) {
+		return _libroLocalService.getEscritorLibros(escritorId);
+	}
+
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getEscritorLibros(
+		long escritorId, int start, int end) {
+		return _libroLocalService.getEscritorLibros(escritorId, start, end);
+	}
+
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getEscritorLibros(
+		long escritorId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<tutoriales.liferay.servicebuilder.libro.model.Libro> orderByComparator) {
+		return _libroLocalService.getEscritorLibros(escritorId, start, end,
+			orderByComparator);
+	}
+
 	/**
 	* Returns a range of all the libros.
 	*
@@ -215,6 +250,17 @@ public class LibroLocalServiceWrapper implements LibroLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _libroLocalService.dynamicQueryCount(dynamicQuery, projection);
+	}
+
+	/**
+	* Returns the escritorIds of the escritors associated with the libro.
+	*
+	* @param libroId the libroId of the libro
+	* @return long[] the escritorIds of escritors associated with the libro
+	*/
+	@Override
+	public long[] getEscritorPrimaryKeys(long libroId) {
+		return _libroLocalService.getEscritorPrimaryKeys(libroId);
 	}
 
 	/**
@@ -325,6 +371,60 @@ public class LibroLocalServiceWrapper implements LibroLocalService,
 	public tutoriales.liferay.servicebuilder.libro.model.Libro updateLibro(
 		tutoriales.liferay.servicebuilder.libro.model.Libro libro) {
 		return _libroLocalService.updateLibro(libro);
+	}
+
+	@Override
+	public void addEscritorLibro(long escritorId, long libroId) {
+		_libroLocalService.addEscritorLibro(escritorId, libroId);
+	}
+
+	@Override
+	public void addEscritorLibro(long escritorId,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro) {
+		_libroLocalService.addEscritorLibro(escritorId, libro);
+	}
+
+	@Override
+	public void addEscritorLibros(long escritorId,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros) {
+		_libroLocalService.addEscritorLibros(escritorId, libros);
+	}
+
+	@Override
+	public void addEscritorLibros(long escritorId, long[] libroIds) {
+		_libroLocalService.addEscritorLibros(escritorId, libroIds);
+	}
+
+	@Override
+	public void clearEscritorLibros(long escritorId) {
+		_libroLocalService.clearEscritorLibros(escritorId);
+	}
+
+	@Override
+	public void deleteEscritorLibro(long escritorId, long libroId) {
+		_libroLocalService.deleteEscritorLibro(escritorId, libroId);
+	}
+
+	@Override
+	public void deleteEscritorLibro(long escritorId,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro) {
+		_libroLocalService.deleteEscritorLibro(escritorId, libro);
+	}
+
+	@Override
+	public void deleteEscritorLibros(long escritorId,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros) {
+		_libroLocalService.deleteEscritorLibros(escritorId, libros);
+	}
+
+	@Override
+	public void deleteEscritorLibros(long escritorId, long[] libroIds) {
+		_libroLocalService.deleteEscritorLibros(escritorId, libroIds);
+	}
+
+	@Override
+	public void setEscritorLibros(long escritorId, long[] libroIds) {
+		_libroLocalService.setEscritorLibros(escritorId, libroIds);
 	}
 
 	@Override

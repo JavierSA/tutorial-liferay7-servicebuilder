@@ -44,7 +44,6 @@ public class LibroSoap implements Serializable {
 		soapModel.setTitulo(model.getTitulo());
 		soapModel.setPublicacion(model.getPublicacion());
 		soapModel.setGenero(model.getGenero());
-		soapModel.setEscritorId(model.getEscritorId());
 
 		return soapModel;
 	}
@@ -185,14 +184,6 @@ public class LibroSoap implements Serializable {
 		_genero = genero;
 	}
 
-	public long getEscritorId() {
-		return _escritorId;
-	}
-
-	public void setEscritorId(long escritorId) {
-		_escritorId = escritorId;
-	}
-
 	private String _uuid;
 	private long _libroId;
 	private long _groupId;
@@ -204,5 +195,4 @@ public class LibroSoap implements Serializable {
 	private String _titulo;
 	private Date _publicacion;
 	private String _genero;
-	private long _escritorId;
 }

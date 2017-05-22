@@ -618,6 +618,172 @@ public interface EscritorPersistence extends BasePersistence<Escritor> {
 	*/
 	public int countAll();
 
+	/**
+	* Returns the primaryKeys of libros associated with the escritor.
+	*
+	* @param pk the primary key of the escritor
+	* @return long[] of the primaryKeys of libros associated with the escritor
+	*/
+	public long[] getLibroPrimaryKeys(long pk);
+
+	/**
+	* Returns all the libros associated with the escritor.
+	*
+	* @param pk the primary key of the escritor
+	* @return the libros associated with the escritor
+	*/
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk);
+
+	/**
+	* Returns a range of all the libros associated with the escritor.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EscritorModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param pk the primary key of the escritor
+	* @param start the lower bound of the range of escritors
+	* @param end the upper bound of the range of escritors (not inclusive)
+	* @return the range of libros associated with the escritor
+	*/
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk, int start, int end);
+
+	/**
+	* Returns an ordered range of all the libros associated with the escritor.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link EscritorModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param pk the primary key of the escritor
+	* @param start the lower bound of the range of escritors
+	* @param end the upper bound of the range of escritors (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of libros associated with the escritor
+	*/
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> getLibros(
+		long pk, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<tutoriales.liferay.servicebuilder.libro.model.Libro> orderByComparator);
+
+	/**
+	* Returns the number of libros associated with the escritor.
+	*
+	* @param pk the primary key of the escritor
+	* @return the number of libros associated with the escritor
+	*/
+	public int getLibrosSize(long pk);
+
+	/**
+	* Returns <code>true</code> if the libro is associated with the escritor.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPK the primary key of the libro
+	* @return <code>true</code> if the libro is associated with the escritor; <code>false</code> otherwise
+	*/
+	public boolean containsLibro(long pk, long libroPK);
+
+	/**
+	* Returns <code>true</code> if the escritor has any libros associated with it.
+	*
+	* @param pk the primary key of the escritor to check for associations with libros
+	* @return <code>true</code> if the escritor has any libros associated with it; <code>false</code> otherwise
+	*/
+	public boolean containsLibros(long pk);
+
+	/**
+	* Adds an association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPK the primary key of the libro
+	*/
+	public void addLibro(long pk, long libroPK);
+
+	/**
+	* Adds an association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libro the libro
+	*/
+	public void addLibro(long pk,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro);
+
+	/**
+	* Adds an association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPKs the primary keys of the libros
+	*/
+	public void addLibros(long pk, long[] libroPKs);
+
+	/**
+	* Adds an association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libros the libros
+	*/
+	public void addLibros(long pk,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros);
+
+	/**
+	* Clears all associations between the escritor and its libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor to clear the associated libros from
+	*/
+	public void clearLibros(long pk);
+
+	/**
+	* Removes the association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPK the primary key of the libro
+	*/
+	public void removeLibro(long pk, long libroPK);
+
+	/**
+	* Removes the association between the escritor and the libro. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libro the libro
+	*/
+	public void removeLibro(long pk,
+		tutoriales.liferay.servicebuilder.libro.model.Libro libro);
+
+	/**
+	* Removes the association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPKs the primary keys of the libros
+	*/
+	public void removeLibros(long pk, long[] libroPKs);
+
+	/**
+	* Removes the association between the escritor and the libros. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libros the libros
+	*/
+	public void removeLibros(long pk,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros);
+
+	/**
+	* Sets the libros associated with the escritor, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libroPKs the primary keys of the libros to be associated with the escritor
+	*/
+	public void setLibros(long pk, long[] libroPKs);
+
+	/**
+	* Sets the libros associated with the escritor, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+	*
+	* @param pk the primary key of the escritor
+	* @param libros the libros to be associated with the escritor
+	*/
+	public void setLibros(long pk,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Libro> libros);
+
 	@Override
 	public java.util.Set<java.lang.String> getBadColumnNames();
 }

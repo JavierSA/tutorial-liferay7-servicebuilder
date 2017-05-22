@@ -34,6 +34,16 @@ public class EscritorLocalServiceWrapper implements EscritorLocalService,
 	}
 
 	@Override
+	public boolean hasLibroEscritor(long libroId, long escritorId) {
+		return _escritorLocalService.hasLibroEscritor(libroId, escritorId);
+	}
+
+	@Override
+	public boolean hasLibroEscritors(long libroId) {
+		return _escritorLocalService.hasLibroEscritors(libroId);
+	}
+
+	@Override
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _escritorLocalService.getActionableDynamicQuery();
 	}
@@ -79,6 +89,11 @@ public class EscritorLocalServiceWrapper implements EscritorLocalService,
 	@Override
 	public int getEscritorsCount() {
 		return _escritorLocalService.getEscritorsCount();
+	}
+
+	@Override
+	public int getLibroEscritorsCount(long libroId) {
+		return _escritorLocalService.getLibroEscritorsCount(libroId);
 	}
 
 	/**
@@ -193,6 +208,26 @@ public class EscritorLocalServiceWrapper implements EscritorLocalService,
 			companyId, start, end, orderByComparator);
 	}
 
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Escritor> getLibroEscritors(
+		long libroId) {
+		return _escritorLocalService.getLibroEscritors(libroId);
+	}
+
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Escritor> getLibroEscritors(
+		long libroId, int start, int end) {
+		return _escritorLocalService.getLibroEscritors(libroId, start, end);
+	}
+
+	@Override
+	public java.util.List<tutoriales.liferay.servicebuilder.libro.model.Escritor> getLibroEscritors(
+		long libroId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<tutoriales.liferay.servicebuilder.libro.model.Escritor> orderByComparator) {
+		return _escritorLocalService.getLibroEscritors(libroId, start, end,
+			orderByComparator);
+	}
+
 	/**
 	* Returns the number of rows matching the dynamic query.
 	*
@@ -217,6 +252,17 @@ public class EscritorLocalServiceWrapper implements EscritorLocalService,
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _escritorLocalService.dynamicQueryCount(dynamicQuery, projection);
+	}
+
+	/**
+	* Returns the libroIds of the libros associated with the escritor.
+	*
+	* @param escritorId the escritorId of the escritor
+	* @return long[] the libroIds of libros associated with the escritor
+	*/
+	@Override
+	public long[] getLibroPrimaryKeys(long escritorId) {
+		return _escritorLocalService.getLibroPrimaryKeys(escritorId);
 	}
 
 	/**
@@ -327,6 +373,60 @@ public class EscritorLocalServiceWrapper implements EscritorLocalService,
 	public tutoriales.liferay.servicebuilder.libro.model.Escritor updateEscritor(
 		tutoriales.liferay.servicebuilder.libro.model.Escritor escritor) {
 		return _escritorLocalService.updateEscritor(escritor);
+	}
+
+	@Override
+	public void addLibroEscritor(long libroId, long escritorId) {
+		_escritorLocalService.addLibroEscritor(libroId, escritorId);
+	}
+
+	@Override
+	public void addLibroEscritor(long libroId,
+		tutoriales.liferay.servicebuilder.libro.model.Escritor escritor) {
+		_escritorLocalService.addLibroEscritor(libroId, escritor);
+	}
+
+	@Override
+	public void addLibroEscritors(long libroId,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Escritor> escritors) {
+		_escritorLocalService.addLibroEscritors(libroId, escritors);
+	}
+
+	@Override
+	public void addLibroEscritors(long libroId, long[] escritorIds) {
+		_escritorLocalService.addLibroEscritors(libroId, escritorIds);
+	}
+
+	@Override
+	public void clearLibroEscritors(long libroId) {
+		_escritorLocalService.clearLibroEscritors(libroId);
+	}
+
+	@Override
+	public void deleteLibroEscritor(long libroId, long escritorId) {
+		_escritorLocalService.deleteLibroEscritor(libroId, escritorId);
+	}
+
+	@Override
+	public void deleteLibroEscritor(long libroId,
+		tutoriales.liferay.servicebuilder.libro.model.Escritor escritor) {
+		_escritorLocalService.deleteLibroEscritor(libroId, escritor);
+	}
+
+	@Override
+	public void deleteLibroEscritors(long libroId,
+		java.util.List<tutoriales.liferay.servicebuilder.libro.model.Escritor> escritors) {
+		_escritorLocalService.deleteLibroEscritors(libroId, escritors);
+	}
+
+	@Override
+	public void deleteLibroEscritors(long libroId, long[] escritorIds) {
+		_escritorLocalService.deleteLibroEscritors(libroId, escritorIds);
+	}
+
+	@Override
+	public void setLibroEscritors(long libroId, long[] escritorIds) {
+		_escritorLocalService.setLibroEscritors(libroId, escritorIds);
 	}
 
 	@Override

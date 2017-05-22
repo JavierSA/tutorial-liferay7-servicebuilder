@@ -28,6 +28,5 @@
 		<field name="genero" type="String">
 			<hint name="max-length">60</hint>
 		</field>
-		<field name="escritorId" type="long" />
 	</model>
 </model-hints>
