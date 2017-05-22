@@ -254,6 +254,21 @@ public interface LibroModel extends BaseModel<Libro>, GroupedModel, ShardedModel
 	 */
 	public void setPublicacion(Date publicacion);
 
+	/**
+	 * Returns the genero of this libro.
+	 *
+	 * @return the genero of this libro
+	 */
+	@AutoEscape
+	public String getGenero();
+
+	/**
+	 * Sets the genero of this libro.
+	 *
+	 * @param genero the genero of this libro
+	 */
+	public void setGenero(String genero);
+
 	@Override
 	public boolean isNew();
 

@@ -2378,6 +2378,7 @@ public class LibroPersistenceImpl extends BasePersistenceImpl<Libro>
 		libroImpl.setTitulo(libro.getTitulo());
 		libroImpl.setEscritor(libro.getEscritor());
 		libroImpl.setPublicacion(libro.getPublicacion());
+		libroImpl.setGenero(libro.getGenero());
 
 		return libroImpl;
 	}

@@ -9,5 +9,6 @@ create table LIBRO_Libro (
 	modifiedDate DATE null,
 	titulo VARCHAR(200) null,
 	escritor VARCHAR(75) null,
-	publicacion DATE null
+	publicacion DATE null,
+	genero VARCHAR(60) null
 );

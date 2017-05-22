@@ -70,6 +70,7 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 		attributes.put("titulo", getTitulo());
 		attributes.put("escritor", getEscritor());
 		attributes.put("publicacion", getPublicacion());
+		attributes.put("genero", getGenero());
 
 		return attributes;
 	}
@@ -141,6 +142,12 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 		if (publicacion != null) {
 			setPublicacion(publicacion);
 		}
+
+		String genero = (String)attributes.get("genero");
+
+		if (genero != null) {
+			setGenero(genero);
+		}
 	}
 
 	@Override
@@ -197,6 +204,16 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	@Override
 	public java.lang.String getEscritor() {
 		return _libro.getEscritor();
+	}
+
+	/**
+	* Returns the genero of this libro.
+	*
+	* @return the genero of this libro
+	*/
+	@Override
+	public java.lang.String getGenero() {
+		return _libro.getGenero();
 	}
 
 	/**
@@ -393,6 +410,16 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		_libro.setExpandoBridgeAttributes(serviceContext);
+	}
+
+	/**
+	* Sets the genero of this libro.
+	*
+	* @param genero the genero of this libro
+	*/
+	@Override
+	public void setGenero(java.lang.String genero) {
+		_libro.setGenero(genero);
 	}
 
 	/**

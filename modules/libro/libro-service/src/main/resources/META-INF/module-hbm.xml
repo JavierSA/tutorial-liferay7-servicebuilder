@@ -17,5 +17,6 @@
 		<property name="titulo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="escritor" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="publicacion" type="org.hibernate.type.TimestampType" />
+		<property name="genero" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>
