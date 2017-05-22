@@ -15,5 +15,8 @@
 		</field>
 		<field name="escritor" type="String" />
 		<field name="publicacion" type="Date" />
+		<field name="genero" type="String">
+			<hint name="max-length">60</hint>
+		</field>
 	</model>
 </model-hints>

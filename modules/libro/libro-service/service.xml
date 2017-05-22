@@ -22,6 +22,7 @@
         <column name="titulo" type="String"/>
         <column name="escritor" type="String"/>
         <column name="publicacion" type="Date"/>
+        <column name="genero" type="String"/>
 
         <!-- Order -->
         <order by="asc">
