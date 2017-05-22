@@ -68,9 +68,9 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("titulo", getTitulo());
-		attributes.put("escritor", getEscritor());
 		attributes.put("publicacion", getPublicacion());
 		attributes.put("genero", getGenero());
+		attributes.put("escritorId", getEscritorId());
 
 		return attributes;
 	}
@@ -131,12 +131,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 			setTitulo(titulo);
 		}
 
-		String escritor = (String)attributes.get("escritor");
-
-		if (escritor != null) {
-			setEscritor(escritor);
-		}
-
 		Date publicacion = (Date)attributes.get("publicacion");
 
 		if (publicacion != null) {
@@ -147,6 +141,12 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 
 		if (genero != null) {
 			setGenero(genero);
+		}
+
+		Long escritorId = (Long)attributes.get("escritorId");
+
+		if (escritorId != null) {
+			setEscritorId(escritorId);
 		}
 	}
 
@@ -194,16 +194,6 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	@Override
 	public java.lang.Object clone() {
 		return new LibroWrapper((Libro)_libro.clone());
-	}
-
-	/**
-	* Returns the escritor of this libro.
-	*
-	* @return the escritor of this libro
-	*/
-	@Override
-	public java.lang.String getEscritor() {
-		return _libro.getEscritor();
 	}
 
 	/**
@@ -307,6 +297,16 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	}
 
 	/**
+	* Returns the escritor ID of this libro.
+	*
+	* @return the escritor ID of this libro
+	*/
+	@Override
+	public long getEscritorId() {
+		return _libro.getEscritorId();
+	}
+
+	/**
 	* Returns the group ID of this libro.
 	*
 	* @return the group ID of this libro
@@ -387,13 +387,13 @@ public class LibroWrapper implements Libro, ModelWrapper<Libro> {
 	}
 
 	/**
-	* Sets the escritor of this libro.
+	* Sets the escritor ID of this libro.
 	*
-	* @param escritor the escritor of this libro
+	* @param escritorId the escritor ID of this libro
 	*/
 	@Override
-	public void setEscritor(java.lang.String escritor) {
-		_libro.setEscritor(escritor);
+	public void setEscritorId(long escritorId) {
+		_libro.setEscritorId(escritorId);
 	}
 
 	@Override

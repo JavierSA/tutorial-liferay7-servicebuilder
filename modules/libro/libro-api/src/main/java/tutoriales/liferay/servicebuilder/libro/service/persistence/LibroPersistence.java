@@ -499,6 +499,137 @@ public interface LibroPersistence extends BasePersistence<Libro> {
 	public int countByTitulo(java.lang.String titulo);
 
 	/**
+	* Returns all the libros where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @return the matching libros
+	*/
+	public java.util.List<Libro> findByEscritorId(long escritorId);
+
+	/**
+	* Returns a range of all the libros where escritorId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link LibroModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param escritorId the escritor ID
+	* @param start the lower bound of the range of libros
+	* @param end the upper bound of the range of libros (not inclusive)
+	* @return the range of matching libros
+	*/
+	public java.util.List<Libro> findByEscritorId(long escritorId, int start,
+		int end);
+
+	/**
+	* Returns an ordered range of all the libros where escritorId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link LibroModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param escritorId the escritor ID
+	* @param start the lower bound of the range of libros
+	* @param end the upper bound of the range of libros (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching libros
+	*/
+	public java.util.List<Libro> findByEscritorId(long escritorId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator);
+
+	/**
+	* Returns an ordered range of all the libros where escritorId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link LibroModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param escritorId the escritor ID
+	* @param start the lower bound of the range of libros
+	* @param end the upper bound of the range of libros (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching libros
+	*/
+	public java.util.List<Libro> findByEscritorId(long escritorId, int start,
+		int end,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator,
+		boolean retrieveFromCache);
+
+	/**
+	* Returns the first libro in the ordered set where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching libro
+	* @throws NoSuchLibroException if a matching libro could not be found
+	*/
+	public Libro findByEscritorId_First(long escritorId,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator)
+		throws NoSuchLibroException;
+
+	/**
+	* Returns the first libro in the ordered set where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching libro, or <code>null</code> if a matching libro could not be found
+	*/
+	public Libro fetchByEscritorId_First(long escritorId,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator);
+
+	/**
+	* Returns the last libro in the ordered set where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching libro
+	* @throws NoSuchLibroException if a matching libro could not be found
+	*/
+	public Libro findByEscritorId_Last(long escritorId,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator)
+		throws NoSuchLibroException;
+
+	/**
+	* Returns the last libro in the ordered set where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching libro, or <code>null</code> if a matching libro could not be found
+	*/
+	public Libro fetchByEscritorId_Last(long escritorId,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator);
+
+	/**
+	* Returns the libros before and after the current libro in the ordered set where escritorId = &#63;.
+	*
+	* @param libroId the primary key of the current libro
+	* @param escritorId the escritor ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next libro
+	* @throws NoSuchLibroException if a libro with the primary key could not be found
+	*/
+	public Libro[] findByEscritorId_PrevAndNext(long libroId, long escritorId,
+		com.liferay.portal.kernel.util.OrderByComparator<Libro> orderByComparator)
+		throws NoSuchLibroException;
+
+	/**
+	* Removes all the libros where escritorId = &#63; from the database.
+	*
+	* @param escritorId the escritor ID
+	*/
+	public void removeByEscritorId(long escritorId);
+
+	/**
+	* Returns the number of libros where escritorId = &#63;.
+	*
+	* @param escritorId the escritor ID
+	* @return the number of matching libros
+	*/
+	public int countByEscritorId(long escritorId);
+
+	/**
 	* Caches the libro in the entity cache if it is enabled.
 	*
 	* @param libro the libro

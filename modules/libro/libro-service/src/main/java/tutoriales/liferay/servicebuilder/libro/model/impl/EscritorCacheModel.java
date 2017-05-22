@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.HashUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
-import tutoriales.liferay.servicebuilder.libro.model.Libro;
+import tutoriales.liferay.servicebuilder.libro.model.Escritor;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -31,27 +31,27 @@ import java.io.ObjectOutput;
 import java.util.Date;
 
 /**
- * The cache model class for representing Libro in entity cache.
+ * The cache model class for representing Escritor in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see Libro
+ * @see Escritor
  * @generated
  */
 @ProviderType
-public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
+public class EscritorCacheModel implements CacheModel<Escritor>, Externalizable {
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
 
-		if (!(obj instanceof LibroCacheModel)) {
+		if (!(obj instanceof EscritorCacheModel)) {
 			return false;
 		}
 
-		LibroCacheModel libroCacheModel = (LibroCacheModel)obj;
+		EscritorCacheModel escritorCacheModel = (EscritorCacheModel)obj;
 
-		if (libroId == libroCacheModel.libroId) {
+		if (escritorId == escritorCacheModel.escritorId) {
 			return true;
 		}
 
@@ -60,17 +60,17 @@ public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
 
 	@Override
 	public int hashCode() {
-		return HashUtil.hash(0, libroId);
+		return HashUtil.hash(0, escritorId);
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
-		sb.append(", libroId=");
-		sb.append(libroId);
+		sb.append(", escritorId=");
+		sb.append(escritorId);
 		sb.append(", groupId=");
 		sb.append(groupId);
 		sb.append(", companyId=");
@@ -83,89 +83,67 @@ public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
-		sb.append(", titulo=");
-		sb.append(titulo);
-		sb.append(", publicacion=");
-		sb.append(publicacion);
-		sb.append(", genero=");
-		sb.append(genero);
-		sb.append(", escritorId=");
-		sb.append(escritorId);
+		sb.append(", nombre=");
+		sb.append(nombre);
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	@Override
-	public Libro toEntityModel() {
-		LibroImpl libroImpl = new LibroImpl();
+	public Escritor toEntityModel() {
+		EscritorImpl escritorImpl = new EscritorImpl();
 
 		if (uuid == null) {
-			libroImpl.setUuid(StringPool.BLANK);
+			escritorImpl.setUuid(StringPool.BLANK);
 		}
 		else {
-			libroImpl.setUuid(uuid);
+			escritorImpl.setUuid(uuid);
 		}
 
-		libroImpl.setLibroId(libroId);
-		libroImpl.setGroupId(groupId);
-		libroImpl.setCompanyId(companyId);
-		libroImpl.setUserId(userId);
+		escritorImpl.setEscritorId(escritorId);
+		escritorImpl.setGroupId(groupId);
+		escritorImpl.setCompanyId(companyId);
+		escritorImpl.setUserId(userId);
 
 		if (userName == null) {
-			libroImpl.setUserName(StringPool.BLANK);
+			escritorImpl.setUserName(StringPool.BLANK);
 		}
 		else {
-			libroImpl.setUserName(userName);
+			escritorImpl.setUserName(userName);
 		}
 
 		if (createDate == Long.MIN_VALUE) {
-			libroImpl.setCreateDate(null);
+			escritorImpl.setCreateDate(null);
 		}
 		else {
-			libroImpl.setCreateDate(new Date(createDate));
+			escritorImpl.setCreateDate(new Date(createDate));
 		}
 
 		if (modifiedDate == Long.MIN_VALUE) {
-			libroImpl.setModifiedDate(null);
+			escritorImpl.setModifiedDate(null);
 		}
 		else {
-			libroImpl.setModifiedDate(new Date(modifiedDate));
+			escritorImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
-		if (titulo == null) {
-			libroImpl.setTitulo(StringPool.BLANK);
+		if (nombre == null) {
+			escritorImpl.setNombre(StringPool.BLANK);
 		}
 		else {
-			libroImpl.setTitulo(titulo);
+			escritorImpl.setNombre(nombre);
 		}
 
-		if (publicacion == Long.MIN_VALUE) {
-			libroImpl.setPublicacion(null);
-		}
-		else {
-			libroImpl.setPublicacion(new Date(publicacion));
-		}
+		escritorImpl.resetOriginalValues();
 
-		if (genero == null) {
-			libroImpl.setGenero(StringPool.BLANK);
-		}
-		else {
-			libroImpl.setGenero(genero);
-		}
-
-		libroImpl.setEscritorId(escritorId);
-
-		libroImpl.resetOriginalValues();
-
-		return libroImpl;
+		return escritorImpl;
 	}
 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
 
-		libroId = objectInput.readLong();
+		escritorId = objectInput.readLong();
 
 		groupId = objectInput.readLong();
 
@@ -175,11 +153,7 @@ public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
-		titulo = objectInput.readUTF();
-		publicacion = objectInput.readLong();
-		genero = objectInput.readUTF();
-
-		escritorId = objectInput.readLong();
+		nombre = objectInput.readUTF();
 	}
 
 	@Override
@@ -192,7 +166,7 @@ public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
 			objectOutput.writeUTF(uuid);
 		}
 
-		objectOutput.writeLong(libroId);
+		objectOutput.writeLong(escritorId);
 
 		objectOutput.writeLong(groupId);
 
@@ -210,35 +184,21 @@ public class LibroCacheModel implements CacheModel<Libro>, Externalizable {
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
 
-		if (titulo == null) {
+		if (nombre == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(titulo);
+			objectOutput.writeUTF(nombre);
 		}
-
-		objectOutput.writeLong(publicacion);
-
-		if (genero == null) {
-			objectOutput.writeUTF(StringPool.BLANK);
-		}
-		else {
-			objectOutput.writeUTF(genero);
-		}
-
-		objectOutput.writeLong(escritorId);
 	}
 
 	public String uuid;
-	public long libroId;
+	public long escritorId;
 	public long groupId;
 	public long companyId;
 	public long userId;
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
-	public String titulo;
-	public long publicacion;
-	public String genero;
-	public long escritorId;
+	public String nombre;
 }

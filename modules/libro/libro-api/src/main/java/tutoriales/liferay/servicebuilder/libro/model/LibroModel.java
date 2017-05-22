@@ -226,21 +226,6 @@ public interface LibroModel extends BaseModel<Libro>, GroupedModel, ShardedModel
 	public void setTitulo(String titulo);
 
 	/**
-	 * Returns the escritor of this libro.
-	 *
-	 * @return the escritor of this libro
-	 */
-	@AutoEscape
-	public String getEscritor();
-
-	/**
-	 * Sets the escritor of this libro.
-	 *
-	 * @param escritor the escritor of this libro
-	 */
-	public void setEscritor(String escritor);
-
-	/**
 	 * Returns the publicacion of this libro.
 	 *
 	 * @return the publicacion of this libro
@@ -268,6 +253,20 @@ public interface LibroModel extends BaseModel<Libro>, GroupedModel, ShardedModel
 	 * @param genero the genero of this libro
 	 */
 	public void setGenero(String genero);
+
+	/**
+	 * Returns the escritor ID of this libro.
+	 *
+	 * @return the escritor ID of this libro
+	 */
+	public long getEscritorId();
+
+	/**
+	 * Sets the escritor ID of this libro.
+	 *
+	 * @param escritorId the escritor ID of this libro
+	 */
+	public void setEscritorId(long escritorId);
 
 	@Override
 	public boolean isNew();

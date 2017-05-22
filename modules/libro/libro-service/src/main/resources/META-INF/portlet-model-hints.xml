@@ -1,6 +1,17 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="tutoriales.liferay.servicebuilder.libro.model.Escritor">
+		<field name="uuid" type="String" />
+		<field name="escritorId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="nombre" type="String" />
+	</model>
 	<model name="tutoriales.liferay.servicebuilder.libro.model.Libro">
 		<field name="uuid" type="String" />
 		<field name="libroId" type="long" />
@@ -13,10 +24,10 @@
 		<field name="titulo" type="String">
 			<hint name="max-length">200</hint>
 		</field>
-		<field name="escritor" type="String" />
 		<field name="publicacion" type="Date" />
 		<field name="genero" type="String">
 			<hint name="max-length">60</hint>
 		</field>
+		<field name="escritorId" type="long" />
 	</model>
 </model-hints>

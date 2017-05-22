@@ -29,28 +29,25 @@ import java.util.List;
  * @generated
  */
 @ProviderType
-public class LibroSoap implements Serializable {
-	public static LibroSoap toSoapModel(Libro model) {
-		LibroSoap soapModel = new LibroSoap();
+public class EscritorSoap implements Serializable {
+	public static EscritorSoap toSoapModel(Escritor model) {
+		EscritorSoap soapModel = new EscritorSoap();
 
 		soapModel.setUuid(model.getUuid());
-		soapModel.setLibroId(model.getLibroId());
+		soapModel.setEscritorId(model.getEscritorId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
 		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setTitulo(model.getTitulo());
-		soapModel.setPublicacion(model.getPublicacion());
-		soapModel.setGenero(model.getGenero());
-		soapModel.setEscritorId(model.getEscritorId());
+		soapModel.setNombre(model.getNombre());
 
 		return soapModel;
 	}
 
-	public static LibroSoap[] toSoapModels(Libro[] models) {
-		LibroSoap[] soapModels = new LibroSoap[models.length];
+	public static EscritorSoap[] toSoapModels(Escritor[] models) {
+		EscritorSoap[] soapModels = new EscritorSoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -59,14 +56,14 @@ public class LibroSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static LibroSoap[][] toSoapModels(Libro[][] models) {
-		LibroSoap[][] soapModels = null;
+	public static EscritorSoap[][] toSoapModels(Escritor[][] models) {
+		EscritorSoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new LibroSoap[models.length][models[0].length];
+			soapModels = new EscritorSoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new LibroSoap[0][0];
+			soapModels = new EscritorSoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -76,25 +73,25 @@ public class LibroSoap implements Serializable {
 		return soapModels;
 	}
 
-	public static LibroSoap[] toSoapModels(List<Libro> models) {
-		List<LibroSoap> soapModels = new ArrayList<LibroSoap>(models.size());
+	public static EscritorSoap[] toSoapModels(List<Escritor> models) {
+		List<EscritorSoap> soapModels = new ArrayList<EscritorSoap>(models.size());
 
-		for (Libro model : models) {
+		for (Escritor model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new LibroSoap[soapModels.size()]);
+		return soapModels.toArray(new EscritorSoap[soapModels.size()]);
 	}
 
-	public LibroSoap() {
+	public EscritorSoap() {
 	}
 
 	public long getPrimaryKey() {
-		return _libroId;
+		return _escritorId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setLibroId(pk);
+		setEscritorId(pk);
 	}
 
 	public String getUuid() {
@@ -105,12 +102,12 @@ public class LibroSoap implements Serializable {
 		_uuid = uuid;
 	}
 
-	public long getLibroId() {
-		return _libroId;
+	public long getEscritorId() {
+		return _escritorId;
 	}
 
-	public void setLibroId(long libroId) {
-		_libroId = libroId;
+	public void setEscritorId(long escritorId) {
+		_escritorId = escritorId;
 	}
 
 	public long getGroupId() {
@@ -161,48 +158,21 @@ public class LibroSoap implements Serializable {
 		_modifiedDate = modifiedDate;
 	}
 
-	public String getTitulo() {
-		return _titulo;
+	public String getNombre() {
+		return _nombre;
 	}
 
-	public void setTitulo(String titulo) {
-		_titulo = titulo;
-	}
-
-	public Date getPublicacion() {
-		return _publicacion;
-	}
-
-	public void setPublicacion(Date publicacion) {
-		_publicacion = publicacion;
-	}
-
-	public String getGenero() {
-		return _genero;
-	}
-
-	public void setGenero(String genero) {
-		_genero = genero;
-	}
-
-	public long getEscritorId() {
-		return _escritorId;
-	}
-
-	public void setEscritorId(long escritorId) {
-		_escritorId = escritorId;
+	public void setNombre(String nombre) {
+		_nombre = nombre;
 	}
 
 	private String _uuid;
-	private long _libroId;
+	private long _escritorId;
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
-	private String _titulo;
-	private Date _publicacion;
-	private String _genero;
-	private long _escritorId;
+	private String _nombre;
 }
