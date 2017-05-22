@@ -3,6 +3,7 @@ package tutoriales.liferay.servicebuilder.libro.upgrade;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;
 import org.osgi.service.component.annotations.Component;
 import tutoriales.liferay.servicebuilder.libro.upgrade.v1_1_0.AddEscritor;
+import tutoriales.liferay.servicebuilder.libro.upgrade.v1_2_0.AddLibrosEscritores;
 
 @Component(immediate = true, service = UpgradeStepRegistrator.class)
 public class LibroUpgradeStepRegistrator implements UpgradeStepRegistrator {
@@ -17,6 +18,10 @@ public class LibroUpgradeStepRegistrator implements UpgradeStepRegistrator {
         registry.register(BUNDLE_SYMBOLIC_NAME, "1.0.1", "1.1.0",
                 new AddEscritor(),
                 new tutoriales.liferay.servicebuilder.libro.upgrade.v1_1_0.UpgradeLibro());
+
+        registry.register(BUNDLE_SYMBOLIC_NAME, "1.1.0", "1.2.0",
+                new tutoriales.liferay.servicebuilder.libro.upgrade.v1_2_0.UpgradeLibro(),
+                new AddLibrosEscritores());
     }
 
 }
