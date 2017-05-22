@@ -22,7 +22,7 @@
         <column name="titulo" type="String"/>
         <column name="publicacion" type="Date"/>
         <column name="genero" type="String"/>
-        <column name="escritorId" type="long"/>
+        <column name="escritores" type="Collection" entity="Escritor" mapping-table="Libros_Escritores"/>
 
         <!-- Order -->
         <order by="asc">
@@ -32,9 +32,6 @@
         <!-- Finder methods -->
         <finder name="Titulo" return-type="Collection">
             <finder-column name="titulo"/>
-        </finder>
-        <finder name="EscritorId" return-type="Collection">
-            <finder-column name="escritorId"/>
         </finder>
     </entity>
 
@@ -51,6 +48,7 @@
         <column name="userName" type="String"/>
         <column name="createDate" type="Date"/>
         <column name="modifiedDate" type="Date"/>
+        <column name="libros" type="Collection" entity="Libro" mapping-table="Libros_Escritores"/>
 
         <!-- Other fields -->
         <column name="nombre" type="String"/>
