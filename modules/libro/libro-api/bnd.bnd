@@ -1,0 +1,9 @@
+Bundle-Name: libro-api
+Bundle-SymbolicName: tutoriales.liferay.servicebuilder.libro.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	tutoriales.liferay.servicebuilder.libro.exception,\
+	tutoriales.liferay.servicebuilder.libro.model,\
+	tutoriales.liferay.servicebuilder.libro.service,\
+	tutoriales.liferay.servicebuilder.libro.service.persistence
+-includeresource: META-INF/service.xml=../libro-service/service.xml
